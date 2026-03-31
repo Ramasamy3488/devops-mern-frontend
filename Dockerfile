@@ -1,7 +1,14 @@
 # Step 1: Build
 FROM node:18 AS build
 
+# Install git
+RUN apt-get update && apt-get install -y git
+
+# Set working directory
 WORKDIR /app
+
+# Clone your frontend repo
+RUN git clone https://github.com/YOUR_USERNAME/YOUR_REACT_REPO.git
 
 COPY package*.json ./
 RUN npm install
