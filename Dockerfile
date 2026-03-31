@@ -1,24 +1,18 @@
 # Step 1: Build
 FROM node:18 AS build
 
-# Install git
 RUN apt-get update && apt-get install -y git
 
-# Set working directory
 WORKDIR /app
 
-# Clone your frontend repo
+# ✅ Clone into current directory
 RUN git clone https://github.com/Ramasamy3488/devops-mern-frontend.git .
 
-COPY package*.json ./
+# Now package.json is in /app
 RUN npm install
 
-COPY . .
-
-# 👇 Accept build arg
+# 👇 Build arg
 ARG REACT_APP_API_URL
-
-# 👇 Set env for React build
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
 RUN npm run build
