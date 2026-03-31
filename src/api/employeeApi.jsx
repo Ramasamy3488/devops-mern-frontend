@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://43.204.235.134:5000/employees";
+const API = `${process.env.REACT_APP_API_URL}/employees`;
 
 export const getEmployees = () => axios.get(API);
 export const getEmployeeById = (id) => axios.get(`${API}/${id}`);
