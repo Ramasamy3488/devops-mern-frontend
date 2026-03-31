@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y git
 WORKDIR /app
 
 # Clone your frontend repo
-RUN git clone https://github.com/Ramasamy3488/devops-mern-frontend.git
+RUN git clone https://github.com/Ramasamy3488/devops-mern-frontend.git .
 
 COPY package*.json ./
 RUN npm install
