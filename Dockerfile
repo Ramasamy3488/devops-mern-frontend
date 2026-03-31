@@ -1,30 +1,26 @@
-# ----------- Step 1: Build React App -----------
+# Step 1: Build
 FROM node:18 AS build
 
-# Install git
-RUN apt-get update && apt-get install -y git
-
-# Set working directory
 WORKDIR /app
 
-# Clone your frontend repo
-RUN git clone https://github.com/Ramasamy3488/devops-mern-frontend.git .
-
-# Install dependencies
+COPY package*.json ./
 RUN npm install
 
-# Build React app
+COPY . .
+
+# 👇 Accept build arg
+ARG REACT_APP_API_URL
+
+# 👇 Set env for React build
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
+
 RUN npm run build
 
 
-# ----------- Step 2: Serve with Nginx -----------
+# Step 2: Serve
 FROM nginx:alpine
 
-# Copy build files to nginx
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Expose port
 EXPOSE 80
-
-# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
