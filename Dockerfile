@@ -8,6 +8,8 @@ WORKDIR /app
 # # ✅ Clone into current directory
 # RUN git clone https://github.com/Ramasamy3488/devops-mern-frontend.git .
 
+COPY . .
+
 # Now package.json is in /app
 RUN npm install
 
