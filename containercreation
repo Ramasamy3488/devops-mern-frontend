@@ -7,4 +7,4 @@ docker run -d --name react-container -p 3000:80 react-app:v1
 
 
   
-#  docker run -it -t --name react-container -p 3000:80 react-app:v1
+#  docker run -it -d --name react-container -p 3000:80 react-app:v1
